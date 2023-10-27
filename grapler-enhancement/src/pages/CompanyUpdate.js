@@ -3,15 +3,18 @@ import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCompany } from '../slices/companySlice';
 import { updateCompanyApi } from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 
 function CompanyUpdate() {
     
     const dispatch = useDispatch() ; 
+    const navigate = useNavigate()
     const { companies } = useSelector((state) => state.companylist);
   
     const queryParams = new URLSearchParams(window.location.search) ; 
-    const companyId= queryParams.get("id") ; 
+    const companyId= queryParams.get("id") ;
+     
     console.log("insdie companyUpdate " , companyId) ; 
     const  company  = companies.find(comp => comp.id==companyId ); 
     console.log('cc' , company) ; 
@@ -23,14 +26,18 @@ function CompanyUpdate() {
        console.log("inside " , response.data  ) ; 
        
         dispatch(updateCompany(response.data )) ; 
+        navigate(`/company`) ; 
        //updateCompany(respone.data ) ; 
         //console.log(respone) ; 
     }
+    if (!company) {
+        return <div>Loading...</div>; // You can show a loading message or handle this case as needed
+      }
   return (
   
     <Formik
       initialValues={{
-        id : company.id , 
+        id : company.companyId , 
         name: company.name ,
         email: company.email,
         description: company.description,

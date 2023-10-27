@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 
 
 function CompanyUser() {
-    
+    const  navigate = useNavigate() ; 
   const { companies } = useSelector((state) => state.companylist);
   console.log("Inside User Company " , companies) ; 
   
@@ -47,8 +48,9 @@ function CompanyUser() {
           ))}
         </tbody>
       </table>
-      {/* <button onClick={() => navigate(`/addCar?id=${ownerid}`) }className="btn btn-primary">Add Car</button> <br></br><br></br>
-      <button onClick={() => navigate(-1) }className="btn btn-primary">Go Back </button>   */}
+      <center>
+      <button   onClick={() => navigate(-1) }className="btn btn-primary">Go Back </button>
+      </center>
     </div>
   </div>  
   

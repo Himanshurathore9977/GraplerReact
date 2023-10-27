@@ -11,8 +11,11 @@ import axios from 'axios';
 import { fetchCompany } from './slices/companySlice';
 import { getAllCompanies } from './api/api';
 import CompanyUser from './pages/CompanyUser';
-import AddCompany from './components/AddCompany';
+import AddCompany from './pages/CompanyLogo';
 import CompanyUpdate from './pages/CompanyUpdate';
+import CompanyAdd from './pages/CompanyAdd';
+import CompanyLogo from './pages/CompanyLogo';
+import Workspaces from './pages/Workspaces';
 
 
 function App() {
@@ -40,9 +43,10 @@ const dispatch = useDispatch() ;
          <Route path='/' exact component={Home} />
           <Route path='/company' element = {<Companies/>} />
           <Route path='/user' element = {<CompanyUser/>} />
-          <Route path='/addCompany' element = {<AddCompany/>} />  
+          <Route path='/addCompany' element = {<CompanyAdd/>} />
+          <Route path='/addLogo/:compId' element = {<CompanyLogo/>} />  
           <Route path='/updateCompany' element = {<CompanyUpdate/>} />
-         
+          <Route path='/workspace' element = {<Workspaces/>} />
            {/* <Route path='/user' component={User} /> */}
         </Routes>
             

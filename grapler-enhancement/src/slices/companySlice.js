@@ -18,13 +18,25 @@ const initialState = {
             console.log("insidegetcompanyslice" , action.payload) ; 
             state.companies =  action.payload ; 
         },
+        addCompany  : (state , action ) => {
+            console.log('insice company slice ' , action.payload )
+            console.log(action.payload) ; 
+            state.companies.push(action.payload);
+          },
 
         updateCompany : (state , action ) => {
             console.log('gii') ; 
             console.log("inside slice " , action.payload)  ; 
+            const data  = action.payload ; 
             state.companies = state.companies.map(obj => obj.id === data.id  ? data : obj);
             
-        }
+        },
+        deleteCompany : (state,action)=>{
+            const id=action.payload;
+            console.log("delete in slice",id);
+            state.companies=state.companies.filter((item)=>item.id != id);
+            
+         }
 
 
     //      updateOwner : (state , action ) => {
@@ -33,7 +45,7 @@ const initialState = {
     //   console.log('inside update owner slide ' , data.ownerNo);
     //   state.data = state.data.map(obj => obj.ownerNo === data.ownerNo ? data : obj);
     //   console.log(current(state));
-    },
+    //},
      
     }
 
@@ -43,12 +55,6 @@ const initialState = {
 
 
 
-
-
-
-
-
-
   }); 
-  export const {fetchCompany , updateCompany } = companySlice.actions ; 
+  export const {fetchCompany , updateCompany , addCompany , deleteCompany} = companySlice.actions ; 
   export default companySlice.reducer ; 

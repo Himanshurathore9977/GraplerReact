@@ -13,13 +13,16 @@ export const getAllCompanies = async () => {
     }
   };
   
-  export const addImage = async (selectedFile) => {
+  export const addImage = async (companyID , selectedFile) => {
+    console.log(companyID) ; 
+    console.log(selectedFile) ; 
       if (selectedFile) {
+        
         const formData = new FormData();
         formData.append('file', selectedFile);
   
         try {
-          const response = await axios.post(`http://localhost:8080/companies/addImage`, formData, {
+          const response = await axios.put(`http://localhost:8082/companies/addImage/${companyID}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -32,6 +35,16 @@ export const getAllCompanies = async () => {
       }
   };
 
+  export const addCompanyApi = async(company ) => {
+    try{
+      console.log("adding here..",company);
+      const response= await axios.post(`${API_BASE_URL}` , company);
+      console.log(response);
+      return response.data;
+    }catch(error){
+      throw error;
+    }
+  }
 
   export const updateCompanyApi = async (companyId, updatedCompanyData) => {
     try {
