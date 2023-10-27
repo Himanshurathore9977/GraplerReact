@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCompany } from '../slices/companySlice';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { CenterFocusStrong } from '@mui/icons-material';
 
 
 function Companies() {
@@ -12,13 +13,17 @@ function Companies() {
 
   const navigate = useNavigate() ; 
   
-  function showUsers(id , companyname ) {
+  function showUsers(id ) {
     console.log("from userList  ", id);
     //navigate(`/user`);
     navigate(`/user?id=${id}`);
   }
 
+  function handleUpdate(id){
+    console.log(id) ; 
+    navigate(`/updateCompany?id=${id}`) ; 
 
+  }
   
 
 
@@ -31,6 +36,7 @@ function Companies() {
         <table className="table table-striped table-hover mt-3">
           <thead className="table-dark">
             <tr>
+              <th>Company Logo </th>
               <th>Company Name</th>
               <th>Explore</th>
               <th>Users</th>
@@ -41,7 +47,14 @@ function Companies() {
           <tbody>
             {companies.map((comp) => (
               <tr key={comp.id}>
-                <td> {comp.companyName }</td>
+                <td>
+                <img
+                  src={`data:image/jpeg;base64,${comp.logo}`}
+                  alt="Company Logo"
+                  style={{ width: '40px', height: '40px' , alignItems : CenterFocusStrong }} // Adjust the width and height as needed
+  />
+                </td>
+                <td> {comp.name }</td>
                 <td>
                   <button
                     className="btn btn-primary"
@@ -57,14 +70,7 @@ function Companies() {
                     View Users 
                   </button>
                 </td>
-                {/* <td>
-                  <button
-                    onClick={() => showCar(owner.ownerNo)}
-                    className="btn btn-primary"
-                  >
-                    View Cars
-                  </button>
-                </td> */}
+        
 
                 {/* <td>
                   <button onClick={() => handleDelete(owner.ownerNo)} className="btn btn-danger" >
@@ -72,9 +78,9 @@ function Companies() {
                   </button>
                 </td> */}
 
-                {/* <td>
-                  <button onClick={() => handleUpdate(owner)} className="btn btn-secondary" > Update  </button>
-                </td> */}
+                <td>
+                  <button onClick={() => handleUpdate(comp.id)} className="btn btn-secondary" > Update  </button>
+                </td>
               </tr>
             ))}
           </tbody>

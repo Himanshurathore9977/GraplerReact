@@ -11,6 +11,8 @@ import axios from 'axios';
 import { fetchCompany } from './slices/companySlice';
 import { getAllCompanies } from './api/api';
 import CompanyUser from './pages/CompanyUser';
+import AddCompany from './components/AddCompany';
+import CompanyUpdate from './pages/CompanyUpdate';
 
 
 function App() {
@@ -37,7 +39,10 @@ const dispatch = useDispatch() ;
         <Routes> 
          <Route path='/' exact component={Home} />
           <Route path='/company' element = {<Companies/>} />
-          <Route path='/user' element = {<CompanyUser/>} />  
+          <Route path='/user' element = {<CompanyUser/>} />
+          <Route path='/addCompany' element = {<AddCompany/>} />  
+          <Route path='/updateCompany' element = {<CompanyUpdate/>} />
+         
            {/* <Route path='/user' component={User} /> */}
         </Routes>
             

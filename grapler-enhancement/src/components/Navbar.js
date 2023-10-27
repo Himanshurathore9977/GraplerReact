@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
+import { IoIosAddCircle } from "react-icons/io";
+//import * as IoIosAddCircle from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import './../css/Navbar.css'
 import { IconContext } from 'react-icons';
@@ -17,6 +19,11 @@ function Navbar() {
         <Link to ="#" className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar}/>
         </Link>
+        <div className="right-aligned-div">
+  <Link to="/addCompany" className="menu-bars">
+    <IoIosAddCircle  />
+  </Link>
+</div>
      </div>
      <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         
